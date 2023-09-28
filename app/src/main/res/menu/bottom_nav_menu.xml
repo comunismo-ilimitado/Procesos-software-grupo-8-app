@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_screen1"
+        android:title="Pantalla 1" />
+
+    <item
+        android:id="@+id/action_screen2"
+        android:title="Pantalla 2" />
+    <item
+        android:id="@+id/action_screen3"
+        android:title="Pantalla 3" />
+</menu>
