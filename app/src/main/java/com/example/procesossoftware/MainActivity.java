@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.action_screen3) {
                 setScreen3();
                 return true;
-            }else if(item.getItemId()==R.id.action_screen4){
-                setScreen4();
-                return true;
             }
 
             return false;
