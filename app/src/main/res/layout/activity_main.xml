@@ -25,7 +25,7 @@
         app:menu="@menu/bottom_nav_menu"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="680dp" />
+        tools:layout_editor_absoluteY="1dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
