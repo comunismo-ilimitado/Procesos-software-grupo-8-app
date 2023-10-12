@@ -1,12 +1,26 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/action_screen1"
-        android:title="Pantalla 1" />
+        android:title="Menú"
+        android:visible="true"
+        android:icon="@drawable/baseline_house_24"
+
+        />
+
 
     <item
         android:id="@+id/action_screen2"
-        android:title="Pantalla 2" />
+        android:title="Gráficos"
+        android:iconTintMode="src_atop"
+        android:icon="@drawable/baseline_bar_chart_24"
+        />
     <item
         android:id="@+id/action_screen3"
-        android:title="Pantalla 3" />
+        android:title="Datos"
+        android:iconTintMode="src_over"
+        android:icon="@drawable/baseline_assignment_ind_24"
+        />
+
 </menu>
