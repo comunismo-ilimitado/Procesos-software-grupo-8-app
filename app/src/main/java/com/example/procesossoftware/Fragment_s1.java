@@ -1,5 +1,7 @@
 package com.example.procesossoftware;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,7 +26,22 @@ public class Fragment_s1 extends Fragment {
 
         // Obtener referencia al TextView del fragmento
         textViewFragment = view.findViewById(R.id.textViewFragment);
+        // Mostramos el numero de cigarros que llevamos
+        textViewFragment.setText(""+getNumCigarros());
+        cont=getNumCigarros();
 
+        if (newTextPending != null) {
+            newTextPending = null; // Resetea el texto pendiente
+        }
+        buttonC = view.findViewById(R.id.button);
+        buttonC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cont++;
+                changeText(cont+"");
+                setNumCigarros(cont); //guardamos en el dispositivo los cigarros que lleva
+            }
+        });
         return view;
     }
     // Método público para cambiar el texto del TextView
@@ -38,5 +55,23 @@ public class Fragment_s1 extends Fragment {
     }
     public TextView getTextViewFragment(){
         return textViewFragment;
+    }
+    public void setNumCigarros(int n){
+        Context context = getContext();
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
+
+// Obtiene un editor para modificar SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putInt("nCigarros", n);
+        editor.apply(); // Guarda los cambios
+    }
+    public int getNumCigarros(){
+        Context context = getContext();
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
+
+// Carga un número desde SharedPreferences
+        int nCigarros = sharedPreferences.getInt("nCigarros", 0);
+        return nCigarros;
     }
 }
