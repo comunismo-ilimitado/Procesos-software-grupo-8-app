@@ -10,4 +10,4 @@ Cosas importantes para meter lo vuestro y probarlo:
   2. La lógica de la pantalla que querais probar va en la clase fragment_sX que tiene asociado un xml. De eso podeis tocar lo que haga falta.
 
 # Gestion de requisitos 📖
-Los documentos de gestión de requisitos se encuentran [docs/requisitos/README.md](aquí).
+Los documentos de gestión de requisitos se encuentran [aquí](docs/requisitos/README.md).
