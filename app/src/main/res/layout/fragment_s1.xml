@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,14 +12,29 @@
         android:id="@+id/textViewFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="serif-monospace"
         android:text="Texto en el fragmento"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="202dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Button" />
+        android:text="He fumado 😔" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="257dp"
+        android:layout_height="294dp"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="258dp"
+        android:layout_height="107dp"
+        android:fontFamily="serif-monospace"
+        android:text="Deja el mono"
+        android:textSize="34sp" />
 
 </LinearLayout>
