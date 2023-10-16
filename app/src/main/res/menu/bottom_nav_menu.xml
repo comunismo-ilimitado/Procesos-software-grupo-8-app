@@ -18,7 +18,7 @@
         />
     <item
         android:id="@+id/action_screen3"
-        android:title="Datos"
+        android:title="Consejos"
         android:iconTintMode="src_over"
         android:icon="@drawable/baseline_assignment_ind_24"
         />
