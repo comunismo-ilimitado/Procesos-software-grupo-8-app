@@ -1,5 +1,7 @@
 package com.example.procesossoftware;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -20,6 +22,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,8 +43,8 @@ public class Fragment_s2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.grafico_cigarros, container, false);
-
-        setGrafica(view);
+        Registro r = getReg();
+        setGrafica(view,r);
 
         return view;
     }
@@ -49,7 +53,7 @@ public class Fragment_s2 extends Fragment {
     public TextView getTextViewFragment(){
         return textViewFragment;
     }
-    public void setGrafica(View view){
+    public void setGrafica(View view, Registro reg){
         lineChart = view.findViewById(R.id.lineChart);
 
         // Configurar la descripción (título) del gráfico
@@ -80,15 +84,30 @@ public class Fragment_s2 extends Fragment {
         yAxis.setAxisLineColor(Color.BLACK);
         yAxis.setLabelCount(8);
         yAxis.setDrawGridLines(false);
-
         List<Entry> entries1 = new ArrayList<>();
-        entries1.add(new Entry(0, 70f));
-        entries1.add(new Entry(1, 65f));
-        entries1.add(new Entry(2, 54f));
-        entries1.add(new Entry(3, 47f));
-        entries1.add(new Entry(4, 32f));
-        entries1.add(new Entry(5, 23f));
-        entries1.add(new Entry(6, 16f));
+        if(reg.reg.size()<2){//si solo hay una semana guardada mostramos los dias que tenemos
+            Integer[] semana = reg.reg.get(reg.reg.size()-1);
+            int j = 0;
+            for(int i = 1; i<=reg.lastDay;i++){
+                entries1.add(new Entry(j, semana[i]));
+                j++;
+            }
+        }
+        else{ //si hay más de una semana ponemos lo sultimos 7 dias
+            Integer[] semana1 = reg.reg.get(reg.reg.size()-2);//semana anterior
+            Integer[] semana2 = reg.reg.get(reg.reg.size()-1);
+            Integer[] semana = semana2;
+            int cont = reg.lastDay; //nos vamos al primero de los últimos 7 dias
+            for(int i = 7;i>0;i--){
+                entries1.add(new Entry(i-1, semana[cont]));
+                cont--;
+                if(cont==0){
+                    cont=7;
+                    semana = semana1;
+                }
+            }
+        }
+
 
 
         LineDataSet dataSet = new LineDataSet(entries1, "Cigarros fumados los ultimos 7 dias");
@@ -99,5 +118,17 @@ public class Fragment_s2 extends Fragment {
         lineChart.setData(lineData);
         // Actualizar el gráfico
         lineChart.invalidate();
+    }
+    public Registro getReg(){ //ya se q deberia hacer un cargador de registro en vez de tener codigo duplicado
+        Context context = getContext();
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
+
+        String json = sharedPreferences.getString("registro2", null);
+        if (json != null) {
+            Gson gson = new GsonBuilder().create();
+            Registro regDev = gson.fromJson(json, Registro.class);
+            return regDev;
+        }
+        return null;
     }
 }
