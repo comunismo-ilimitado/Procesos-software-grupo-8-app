@@ -28,7 +28,7 @@ public class Registro implements Serializable {
         this.lastDay = i;
     }
     public void SetWeek(int n){
-        for(int i = lastWeek;i<n;i++){
+        for(int i = lastWeek+1;i<=n;i++){
             Integer[] semana = new Integer[8];
             semana[0] = i;
             for(int j = 1;j<8;j++){
