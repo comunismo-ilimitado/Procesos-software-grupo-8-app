@@ -49,9 +49,14 @@ public class Fragment_s1 extends Fragment {
             Calendar calendar = Calendar.getInstance();
             int numeroSemana = calendar.get(Calendar.WEEK_OF_YEAR);
             int diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
+            diaSemana--;
+            if(diaSemana==0){
+                diaSemana=7;
+            }
 
             r.SetDay(diaSemana);
             r.SetWeek(numeroSemana);
+            setReg(r);
         }
         semana = r.reg.get(r.reg.size()-1);
         dia = r.lastDay;
