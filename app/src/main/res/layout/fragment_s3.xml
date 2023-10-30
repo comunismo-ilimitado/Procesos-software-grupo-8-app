@@ -36,6 +36,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"
-        android:text="3. Planee lo que va a hacer en lugar de fumar en los momentos en los que es más propenso a hacerlo"
+        android:text="3. Planee lo que va a hacer en lugar de fumar en los momentos en los que es más propenso a hacerlo."
         android:textSize="20sp" />
 </LinearLayout>

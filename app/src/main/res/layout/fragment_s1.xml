@@ -8,6 +8,9 @@
     android:gravity="center"
     android:padding="16dp">
 
+
+
+
     <TextView
         android:id="@+id/textViewFragment"
         android:layout_width="wrap_content"
@@ -32,9 +35,11 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="258dp"
-        android:layout_height="107dp"
+        android:layout_height="71dp"
         android:fontFamily="serif-monospace"
         android:text="Deja el mono"
         android:textSize="34sp" />
+
+
 
 </LinearLayout>

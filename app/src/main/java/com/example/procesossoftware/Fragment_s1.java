@@ -1,15 +1,21 @@
 package com.example.procesossoftware;
 
+
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
@@ -18,6 +24,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
+import java.util.Random;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -35,6 +43,7 @@ public class Fragment_s1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_s1, container, false);
+
 
         // Obtener referencia al TextView del fragmento
         textViewFragment = view.findViewById(R.id.textViewFragment);
@@ -77,8 +86,50 @@ public class Fragment_s1 extends Fragment {
                 setReg(r); //guardamos en el dispositivo los cigarros que lleva
             }
         });
+
+
+        CreatePopUp(inflater,view);
         return view;
     }
+
+    private void CreatePopUp(LayoutInflater inflater, View view) {
+
+
+        View popUpView = inflater.inflate(R.layout.fragment_pop_up, null);
+
+        TextView textView = popUpView.findViewById(R.id.randomAdvice);
+        Consejos consejos = new Consejos();
+        Random random = new Random();
+        int result = random.nextInt(consejos.aConsejos.length);
+        textView.setText(consejos.aConsejos[result]);
+
+
+
+
+
+        int width = ViewGroup.LayoutParams.MATCH_PARENT;
+        int height =ViewGroup.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+        PopupWindow popupWindow = new PopupWindow(popUpView,width,height, focusable);
+
+
+        Button button = popUpView.findViewById(R.id.cerrar);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                popupWindow.showAtLocation(view, Gravity.BOTTOM,0,0);
+            }
+        });
+
+
+    }
+
     // Método público para cambiar el texto del TextView
     public void changeText(String newText) {
         if (textViewFragment != null) {
