@@ -2,4 +2,6 @@
     <string name="app_name">Bubaluu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="siguiente_consejo">Siguiente Consejo</string>
+    <string name="consejo_aqui">Consejo Aquí</string>
 </resources>

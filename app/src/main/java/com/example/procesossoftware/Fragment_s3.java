@@ -1,5 +1,6 @@
 package com.example.procesossoftware;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,20 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-public class Fragment_s3 extends Fragment {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
+public class Fragment_s3 extends Fragment {
     private TextView textViewFragment;
-    private String newTextPending;
-    private int cont;
-    private Button buttonC;
+    private ArrayList<String> advices;
+    private Button buttonChangeAdvice;
+    private Set<Integer> shownAdvices = new HashSet<>(); // Conjunto de índices de consejos mostrados
 
 
     @Override
@@ -23,18 +32,62 @@ public class Fragment_s3 extends Fragment {
 
         // Obtener referencia al TextView del fragmento
         textViewFragment = view.findViewById(R.id.textViewFragment);
+        buttonChangeAdvice = view.findViewById(R.id.buttonC);
+
+        // Cargar los consejos desde el archivo de texto en assets
+        advices = loadAdvicesFromAsset();
+
+        // Mostrar un consejo al iniciar
+        showNextAdvice();
+
+        // Configurar un listener para el botón de cambio de consejo
+        buttonChangeAdvice.setOnClickListener(v -> showNextAdvice());
+
         return view;
     }
-    // Método público para cambiar el texto del TextView
-    public void changeText(String newText) {
-        if (textViewFragment != null) {
-            textViewFragment.setText(newText);
+
+
+    // Método para cargar los consejos desde el archivo de texto en assets
+    private ArrayList<String> loadAdvicesFromAsset() {
+        ArrayList<String> advicesList = new ArrayList<>();
+        AssetManager assetManager = requireContext().getAssets();
+
+        try {
+            InputStream inputStream = assetManager.open("consejos.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                advicesList.add(line);
+            }
+
+            inputStream.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        else {
-            newTextPending = newText; // Almacena el nuevo texto si el fragmento no se ha inflado aún
-        }
+
+        return advicesList;
     }
-    public TextView getTextViewFragment(){
-        return textViewFragment;
+
+    // Método para mostrar el próximo consejo
+    private void showNextAdvice() {
+        if (advices != null && advices.size() > 0) {
+            int currentAdviceIndex;
+            do{
+                currentAdviceIndex = new Random().nextInt(advices.size());
+            } while (shownAdvices.contains(currentAdviceIndex));
+
+            // Agrega el índice al conjunto de consejos mostrados
+            shownAdvices.add(currentAdviceIndex);
+
+            // Si todos los consejos han sido mostrados, reinicializa el conjunto
+            if (shownAdvices.size() == advices.size()) {
+                shownAdvices.clear();
+            }
+
+            String advice = advices.get(currentAdviceIndex);
+            textViewFragment.setText(advice);
+        }
     }
 }
