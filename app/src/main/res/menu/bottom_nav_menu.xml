@@ -1,24 +1,22 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/action_screen1"
-        android:title="Menú"
+        android:title="@string/inicio"
         android:visible="true"
         android:icon="@drawable/baseline_house_24"
-
         />
-
 
     <item
         android:id="@+id/action_screen2"
-        android:title="Gráficos"
+        android:title="@string/graficos"
         android:iconTintMode="src_atop"
         android:icon="@drawable/baseline_bar_chart_24"
         />
+
     <item
         android:id="@+id/action_screen3"
-        android:title="Consejos"
+        android:title="@string/consejos"
         android:iconTintMode="src_over"
         android:icon="@drawable/baseline_assignment_ind_24"
         />

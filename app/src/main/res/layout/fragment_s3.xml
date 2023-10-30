@@ -8,34 +8,20 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="serif-monospace"
-        android:text="1. Comunique a todos sus amigos, familia y compañeros de trabajo su plan para dejar de fumar."
+        android:text="@string/consejo_aqui"
         android:textSize="20sp" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="50sp" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/buttonC"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="serif-monospace"
-        android:text="2. Establezca metas para dejar de fumar a corto plazo y recompénsese cuando las logre."
-        android:textSize="20sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif-monospace"
-        android:text="3. Planee lo que va a hacer en lugar de fumar en los momentos en los que es más propenso a hacerlo"
-        android:textSize="20sp" />
+        android:text="@string/siguiente_consejo" />
 </LinearLayout>
