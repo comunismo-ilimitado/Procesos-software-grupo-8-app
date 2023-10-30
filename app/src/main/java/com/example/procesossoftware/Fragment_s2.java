@@ -94,17 +94,21 @@ public class Fragment_s2 extends Fragment {
             }
         }
         else{ //si hay más de una semana ponemos lo sultimos 7 dias
+            Integer[] ultimos7 = new Integer[8];
             Integer[] semana1 = reg.reg.get(reg.reg.size()-2);//semana anterior
             Integer[] semana2 = reg.reg.get(reg.reg.size()-1);
             Integer[] semana = semana2;
             int cont = reg.lastDay; //nos vamos al primero de los últimos 7 dias
             for(int i = 7;i>0;i--){
-                entries1.add(new Entry(i-1, semana[cont]));
+                ultimos7[i]=semana[cont];
                 cont--;
                 if(cont==0){
                     cont=7;
                     semana = semana1;
                 }
+            }
+            for(int i = 1;i<=7;i++){
+                entries1.add(new Entry(i,ultimos7[i]));
             }
         }
 
