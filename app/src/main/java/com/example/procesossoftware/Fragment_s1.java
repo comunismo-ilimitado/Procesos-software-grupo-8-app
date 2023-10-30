@@ -9,14 +9,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -25,16 +20,17 @@ public class Fragment_s1 extends Fragment {
 
     private TextView textViewFragment;
     private String newTextPending;
-    private int cont;
     private Integer[] semana;
     private int dia;
     private Registro r;
-    private Button buttonC;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_s1, container, false);
+
+        // Obtener referencia al ImageButton
+        ImageButton imageButton = view.findViewById(R.id.imageButton);
 
         // Obtener referencia al TextView del fragmento
         textViewFragment = view.findViewById(R.id.textViewFragment);
@@ -60,23 +56,22 @@ public class Fragment_s1 extends Fragment {
         }
         semana = r.reg.get(r.reg.size()-1);
         dia = r.lastDay;
+
         // Mostramos el numero de cigarros que llevamos
-
-
-        textViewFragment.setText(""+semana[r.lastDay]);
+        textViewFragment.setText(getString(R.string.cigarros_fumados, semana[r.lastDay]));
 
         if (newTextPending != null) {
             newTextPending = null; // Resetea el texto pendiente
         }
-        buttonC = view.findViewById(R.id.button);
-        buttonC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                semana[dia]++;
-                changeText(semana[dia]+"");
-                setReg(r); //guardamos en el dispositivo los cigarros que lleva
-            }
+
+        // Configurar un OnClickListener para el ImageButton
+        imageButton.setOnClickListener(v -> {
+            // Manejar la acción cuando se toca el ImageButton
+            semana[dia]++;
+            changeText("Cigarros fumados: " + semana[dia]);
+            setReg(r); // Guardar cambios en las preferencias compartidas
         });
+
         return view;
     }
     // Método público para cambiar el texto del TextView
@@ -88,29 +83,8 @@ public class Fragment_s1 extends Fragment {
             newTextPending = newText; // Almacena el nuevo texto si el fragmento no se ha inflado aún
         }
     }
-    public TextView getTextViewFragment(){
-        return textViewFragment;
-    }
-    public void setNumCigarros(int n){
-        Context context = getContext();
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
 
-// Obtiene un editor para modificar SharedPreferences
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putInt("nCigarros", n);
-        editor.apply(); // Guarda los cambios
-    }
-    public int getNumCigarros(){
-        Context context = getContext();
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
-
-// Carga un número desde SharedPreferences
-        int nCigarros = sharedPreferences.getInt("nCigarros", 0);
-        return nCigarros;
-    }
     public Registro getReg(){
-        Context context = getContext();
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
 
         String json = sharedPreferences.getString("registro2", null);
@@ -122,7 +96,6 @@ public class Fragment_s1 extends Fragment {
         return null;
     }
     public void setReg(Registro reg){
-        Context context = getContext();
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
 
 // Obtiene un editor para modificar SharedPreferences
