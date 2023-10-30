@@ -2,4 +2,12 @@
     <string name="app_name">Bubaluu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="siguiente_consejo">Siguiente Consejo</string>
+    <string name="consejo_aqui">Consejo Aquí</string>
+    <string name="texto_en_el_fragmento">Texto en el fragmento</string>
+    <string name="inicio">Inicio</string>
+    <string name="graficos">Gráficos</string>
+    <string name="consejos">Consejos</string>
+    <string name="cigarros_fumados">Cigarros fumados: %1$d</string>
+    <string name="he_fumado">He fumado</string>
 </resources>
