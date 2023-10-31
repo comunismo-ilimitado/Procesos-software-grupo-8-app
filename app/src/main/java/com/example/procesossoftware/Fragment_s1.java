@@ -35,11 +35,13 @@ public class Fragment_s1 extends Fragment {
     private Integer[] semana;
     private int dia;
     private Registro r;
+    private boolean flag;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_s1, container, false);
+        flag=false;
 
         // Obtener referencia al ImageButton
         ImageButton imageButton = view.findViewById(R.id.imageButton);
@@ -52,6 +54,7 @@ public class Fragment_s1 extends Fragment {
         if(r==null){ //no se ha creado todavia
             r = new Registro();
             setReg(r);
+            flag=true;
         }
         else{ //actualizamos el registro al dia y la fecha actual
             Calendar calendar = Calendar.getInstance();
@@ -61,7 +64,7 @@ public class Fragment_s1 extends Fragment {
             if(diaSemana==0){
                 diaSemana=7;
             }
-
+            if(diaSemana!=r.lastDay || numeroSemana!=r.lastWeek) flag = true;
             r.SetDay(diaSemana);
             r.SetWeek(numeroSemana);
             setReg(r);
@@ -84,8 +87,10 @@ public class Fragment_s1 extends Fragment {
             setReg(r); // Guardar cambios en las preferencias compartidas
         });
 
+        if(flag){
+            CreatePopUp(inflater,view);
+        }
 
-        CreatePopUp(inflater,view);
         return view;
     }
 
