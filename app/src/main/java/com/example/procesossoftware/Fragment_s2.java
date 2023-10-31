@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -31,15 +29,6 @@ import java.util.List;
 
 
 public class Fragment_s2 extends Fragment {
-
-    private TextView textViewFragment;
-    private String newTextPending;
-    private int cont;
-    private Button buttonC;
-    private LineChart lineChart;
-    private List<String> xValues;
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.grafico_cigarros, container, false);
@@ -48,13 +37,9 @@ public class Fragment_s2 extends Fragment {
 
         return view;
     }
-    // Método público para cambiar el texto del TextView
 
-    public TextView getTextViewFragment(){
-        return textViewFragment;
-    }
     public void setGrafica(View view, Registro reg){
-        lineChart = view.findViewById(R.id.lineChart);
+        LineChart lineChart = view.findViewById(R.id.lineChart);
 
         // Configurar la descripción (título) del gráfico
         Description description = new Description();
@@ -65,7 +50,7 @@ public class Fragment_s2 extends Fragment {
         //Quita el eje y de la derecha
         lineChart.getAxisRight().setDrawLabels(false);
 
-        xValues = Arrays.asList("7","6","5","4","3","2","1");
+        List<String> xValues = Arrays.asList("7", "6", "5", "4", "3", "2", "1");
 
         //CONFIGURA EL EJE X
         XAxis xAxis = lineChart.getXAxis();
@@ -79,7 +64,7 @@ public class Fragment_s2 extends Fragment {
         //CONFIGURA EJE X
         YAxis yAxis = lineChart.getAxisLeft();
         yAxis.setAxisMinimum(0f);
-        yAxis.setAxisMaximum(80f);
+        yAxis.setAxisMaximum(20f);
         yAxis.setAxisLineWidth(2f);
         yAxis.setAxisLineColor(Color.BLACK);
         yAxis.setLabelCount(8);
@@ -124,7 +109,6 @@ public class Fragment_s2 extends Fragment {
         lineChart.invalidate();
     }
     public Registro getReg(){ //ya se q deberia hacer un cargador de registro en vez de tener codigo duplicado
-        Context context = getContext();
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("MiSharedPreferences", Context.MODE_PRIVATE);
 
         String json = sharedPreferences.getString("registro2", null);
