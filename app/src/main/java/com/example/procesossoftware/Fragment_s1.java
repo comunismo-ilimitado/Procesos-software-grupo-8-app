@@ -31,6 +31,7 @@ import com.google.gson.GsonBuilder;
 public class Fragment_s1 extends Fragment {
 
     private TextView textViewFragment;
+    private TextView cont;
     private String newTextPending;
     private Integer[] semana;
     private int dia;
@@ -48,6 +49,7 @@ public class Fragment_s1 extends Fragment {
 
         // Obtener referencia al TextView del fragmento
         textViewFragment = view.findViewById(R.id.textViewFragment);
+        cont = view.findViewById(R.id.textView);
 
         //recuperamos la información de cigarros
         r = getReg();
@@ -65,6 +67,7 @@ public class Fragment_s1 extends Fragment {
                 diaSemana=7;
             }
             if(diaSemana!=r.lastDay || numeroSemana!=r.lastWeek) flag = true;
+            changeCont(diaSemana,numeroSemana);
             r.SetDay(diaSemana);
             r.SetWeek(numeroSemana);
             setReg(r);
@@ -73,7 +76,9 @@ public class Fragment_s1 extends Fragment {
         dia = r.lastDay;
 
         // Mostramos el numero de cigarros que llevamos
-        textViewFragment.setText(getString(R.string.cigarros_fumados, semana[r.lastDay]));
+        //textViewFragment.setText(getString(R.string.cigarros_fumados, semana[r.lastDay]));
+        textViewFragment.setText("  Cigarros fumados   \n \n " + semana[r.lastDay]+"\n");
+        cont.setText("  Dias sin fumar   \n \n"+r.numDias + "\n");
 
         if (newTextPending != null) {
             newTextPending = null; // Resetea el texto pendiente
@@ -83,7 +88,9 @@ public class Fragment_s1 extends Fragment {
         imageButton.setOnClickListener(v -> {
             // Manejar la acción cuando se toca el ImageButton
             semana[dia]++;
-            changeText("Cigarros fumados: " + semana[dia]);
+            changeText("  Cigarros fumados   \n \n " + semana[dia]+"\n");
+            r.setNumDias(0);
+            cont.setText("  Dias sin fumar   \n \n"+r.numDias + "\n");
             setReg(r); // Guardar cambios en las preferencias compartidas
         });
 
@@ -92,6 +99,23 @@ public class Fragment_s1 extends Fragment {
         }
 
         return view;
+    }
+
+    private void changeCont(int diaSemana, int numeroSemana) {
+        if(numeroSemana == r.lastWeek){
+            r.setNumDias(r.numDias+(diaSemana-r.lastDay));
+        }
+        else{
+            int dif = (numeroSemana - r.lastWeek)*7;
+            if (r.lastDay < diaSemana ){
+                dif += (diaSemana - r.lastDay);
+            }
+            else{
+                dif -= (r.lastDay-diaSemana);
+            }
+            r.setNumDias(dif);
+
+        }
     }
 
     private void CreatePopUp(LayoutInflater inflater, View view) {

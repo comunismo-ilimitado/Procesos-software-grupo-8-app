@@ -8,12 +8,12 @@ public class Registro implements Serializable {
     ArrayList<Integer[]> reg;
     int lastWeek;
     int lastDay;
-
+    int numDias;
     public Registro() {
         Calendar calendar = Calendar.getInstance();
         int numeroSemana = calendar.get(Calendar.WEEK_OF_YEAR);
         int diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
-
+        this.numDias = 0;
         this.reg = new ArrayList<>();
         Integer[] semana = new Integer[8];
         semana[0] = numeroSemana;
@@ -37,5 +37,11 @@ public class Registro implements Serializable {
             this.reg.add(semana);
         }
         this.lastWeek=n;
+    }
+    public void setNumDias(int n){
+        this.numDias = n;
+    }
+    public int getNumDias(){
+        return this.numDias;
     }
 }

@@ -11,7 +11,9 @@
         android:id="@+id/textViewFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="serif-monospace"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         android:text="@string/consejo_aqui"
         android:textSize="20sp" />
 
@@ -23,5 +25,6 @@
         android:id="@+id/buttonC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="@string/siguiente_consejo" />
 </LinearLayout>
