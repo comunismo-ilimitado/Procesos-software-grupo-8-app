@@ -1,5 +1,6 @@
 package com.example.procesossoftware;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -27,21 +28,26 @@ import com.google.gson.GsonBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Fragment_s2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.grafico_cigarros, container.findViewById(R.id.contenedor_grafico), false);
-        Registro r = getReg();
-        setGrafica(view,r);
-        setAhorro(container,r);
+            View view_general = inflater.inflate(R.layout.fragment_s2, container, false);
+            View view = inflater.inflate(R.layout.grafico_cigarros, (ViewGroup) view_general);
+            Registro r = getReg();
+            setAhorro(view_general,r);
+            setGrafica(view,r);
+            //((ViewGroup)view_general).addView(view);
 
-        return view;
+
+            return view_general;
     }
 
-    public void setAhorro(ViewGroup viewgroup, Registro registro){
-        TextView text = (TextView) viewgroup.findViewById(R.id.texto_ahorro);
+    public void setAhorro(View viewgroup, Registro registro){
+        TextView text = viewgroup.findViewById(R.id.ahorro_texto);
+
         text.setText("Te has ahorrado "+ String.format("%.02f", (Estimaciones.ahorroSemanal(registro)*0.25)) + "euros");
     }
 
