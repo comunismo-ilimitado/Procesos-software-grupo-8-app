@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -31,11 +32,17 @@ import java.util.List;
 public class Fragment_s2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.grafico_cigarros, container, false);
+        View view = inflater.inflate(R.layout.grafico_cigarros, container.findViewById(R.id.contenedor_grafico), false);
         Registro r = getReg();
         setGrafica(view,r);
+        setAhorro(container,r);
 
         return view;
+    }
+
+    public void setAhorro(ViewGroup viewgroup, Registro registro){
+        TextView text = (TextView) viewgroup.findViewById(R.id.texto_ahorro);
+        text.setText("Te has ahorrado "+ String.format("%.02f", (Estimaciones.ahorroSemanal(registro)*0.25)) + "euros");
     }
 
     public void setGrafica(View view, Registro reg){
