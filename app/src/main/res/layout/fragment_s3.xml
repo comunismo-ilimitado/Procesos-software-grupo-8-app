@@ -27,4 +27,11 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:text="@string/siguiente_consejo" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="122dp"
+        android:layout_height="wrap_content"
+        android:text="Añadir consejo"
+        android:textColor="@color/white" />
 </LinearLayout>
