@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:background="#D6D6D6">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -30,36 +29,37 @@
             android:id="@+id/editTextId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingrese su texto aquí"
+            android:hint="Añada el consejo"
             android:inputType="" />
 
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/cerrar"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="5dp"
                 android:layout_marginBottom="0dp"
+                android:layout_weight="1"
                 android:text="Cerrar" />
 
             <Button
                 android:id="@+id/guardar"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="0dp"
+                android:layout_weight="1"
                 android:text="Guardar" />
 
-
-        </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-
 
 </RelativeLayout>
