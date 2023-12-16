@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#D6D6D6">
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
@@ -29,17 +28,17 @@
         <TextView
             android:id="@+id/randomAdvice"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:layout_margin="10dp"
             android:text=""
             android:textAlignment="center"
-            android:textSize="13dp"
+            android:textSize="15dp"
             tools:ignore="TextSizeCheck" />
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="67dp">
 
 
             <Button
@@ -48,8 +47,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                android:text="Cerrar" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Cerrar"
+                android:textColor="@color/white" />
 
 
         </RelativeLayout>

@@ -1,12 +1,12 @@
 package com.example.procesossoftware;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,12 +17,13 @@ import android.widget.PopupWindow;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 
 import com.google.gson.Gson;
@@ -42,7 +43,7 @@ public class Fragment_s1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_s1, container, false);
-        flag=false;
+        flag=true;
 
         // Obtener referencia al ImageButton
         ImageButton imageButton = view.findViewById(R.id.imageButton);
@@ -119,41 +120,46 @@ public class Fragment_s1 extends Fragment {
     }
 
     private void CreatePopUp(LayoutInflater inflater, View view) {
-
-
         View popUpView = inflater.inflate(R.layout.fragment_pop_up, null);
-
         TextView textView = popUpView.findViewById(R.id.randomAdvice);
-        Consejos consejos = new Consejos();
-        Random random = new Random();
-        int result = random.nextInt(consejos.aConsejos.length);
-        textView.setText(consejos.aConsejos[result]);
 
+        // Leer consejos desde el archivo de texto
+        List<String> consejosList = readAdvicesFromFile("consejos.txt");
 
+        // Obtener un consejo aleatorio
+        if (!consejosList.isEmpty()) {
+            Random random = new Random();
+            int result = random.nextInt(consejosList.size());
+            textView.setText(consejosList.get(result));
+        }
+        // Crea un objeto AlertDialog con el diseño inflado
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setView(popUpView);
 
-
-
-        int width = ViewGroup.LayoutParams.MATCH_PARENT;
-        int height =ViewGroup.LayoutParams.WRAP_CONTENT;
-        boolean focusable = true;
-        PopupWindow popupWindow = new PopupWindow(popUpView,width,height, focusable);
-
+        // Muestra el popup
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
         Button button = popUpView.findViewById(R.id.cerrar);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popupWindow.dismiss();
-            }
-        });
-        view.post(new Runnable() {
-            @Override
-            public void run() {
-                popupWindow.showAtLocation(view, Gravity.BOTTOM,0,300);
-            }
-        });
+        button.setOnClickListener(v -> alertDialog.dismiss());
+    }
 
+    private List<String> readAdvicesFromFile(String filename) {
+        List<String> consejosList = new ArrayList<>();
+        try {
+            InputStream inputStream = getResources().getAssets().open(filename);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                consejosList.add(line);
+            }
+
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return consejosList;
     }
 
     // Método público para cambiar el texto del TextView

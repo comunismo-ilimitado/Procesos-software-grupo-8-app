@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#D6D6D6">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="20dp"
-            android:text="Añada el consejo"
+            android:text="Nuevo consejo"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="18dp" />
@@ -28,8 +26,9 @@
         <EditText
             android:id="@+id/editTextId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Añada el consejo"
+            android:layout_height="48dp"
+            android:layout_margin="10dp"
+            android:hint="Intenta que..."
             android:inputType="" />
 
         <LinearLayout
@@ -46,7 +45,8 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
-                android:text="Cerrar" />
+                android:text="Cerrar"
+                android:textColor="@color/white"/>
 
             <Button
                 android:id="@+id/guardar"
@@ -57,7 +57,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="0dp"
                 android:layout_weight="1"
-                android:text="Guardar" />
+                android:text="Guardar"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
     </LinearLayout>

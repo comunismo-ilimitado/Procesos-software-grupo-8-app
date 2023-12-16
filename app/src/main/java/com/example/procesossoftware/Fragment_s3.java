@@ -124,13 +124,7 @@ public class Fragment_s3 extends Fragment {
         });
 
         // Configura un clic para el botón "Cancelar"
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Cierra el popup
-                alertDialog.dismiss();
-            }
-        });
+        btnCancelar.setOnClickListener(v -> alertDialog.dismiss());
 
         // Crea un objeto AlertDialog con el diseño inflado
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
