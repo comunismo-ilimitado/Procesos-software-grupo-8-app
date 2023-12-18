@@ -6,22 +6,32 @@ public class Estimaciones {
     public static double ahorroSemanal(Registro registro){
         // Calcula la cantidad total de cigarros fumados en la última semana
         Integer[] semana = Ultimos(registro);
+        
+        return ahorro(registro.getDailyCigaretteAverage(), semana);
+    }
 
+    private static double ahorro(Integer dailyCigaretteAverage, Integer[] semana){
         int totalCigarros = 0;
-        for (int i = 1; i <= 7 ; i++){
+        for (int i = 1; i <= (semana.length - 1); i++){
             totalCigarros += semana[i];
         }
         // Calcula el ahorro semanal en euros
-        int mediaCigarros = registro.getDailyCigaretteAverage() * semana.length;  //.length por si el usuario lleva menos de una semana en la app
-        double ahorroSemanal = (mediaCigarros - totalCigarros) * COSTO_CIGARRO;
+        int mediaCigarros = dailyCigaretteAverage * (semana.length - 1);  //.length por si el usuario lleva menos de una semana en la app
+        return (mediaCigarros - totalCigarros) * COSTO_CIGARRO;
+    }
 
-        return ahorroSemanal;
+    public static double ahorroTotal(Registro registro){
+        double ahorroTotal = 0;
+        for (Integer[] semana : registro.reg){
+            ahorroTotal += ahorro(registro.getDailyCigaretteAverage(), semana);
+        }
+        return ahorroTotal;
     }
 
     private static Integer[] Ultimos(Registro r){
         Integer[] ultimosDias;
         if(r.reg.size() >= 2){  //si hay más de una semana ponemos lo sultimos 7 dias
-            ultimosDias = new Integer[7];
+            ultimosDias = new Integer[8];
             Integer[] semana1 = r.reg.get(r.reg.size()-2);//semana anterior
             Integer[] semana2 = r.reg.get(r.reg.size()-1);
             Integer[] semana = semana2;
