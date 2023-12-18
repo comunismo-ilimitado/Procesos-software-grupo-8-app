@@ -44,7 +44,15 @@ public class Fragment_s2 extends Fragment {
     public void setAhorro(View viewgroup, Registro registro){
         TextView text = viewgroup.findViewById(R.id.ahorro_texto);
 
-        text.setText("Te has ahorrado "+ String.format("%.02f", (Estimaciones.ahorroSemanal(registro)*0.25)) + "euros");
+        Double balance = Estimaciones.ahorroSemanal(registro);
+
+        if (balance >= 0) {
+            String strBalance = String.format("%.02f", balance);
+            text.setText("Te has ahorrado " + strBalance + "€");
+        } else {
+            String strBalance = String.format("%.02f", -balance);
+            text.setText("Te has gastado " +  strBalance + "€");
+        }
     }
 
     public void setGrafica(View view, Registro reg){
