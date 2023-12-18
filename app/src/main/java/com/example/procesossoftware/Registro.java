@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Registro implements Serializable {
+    int dailyCigaretteAverage;
     ArrayList<Integer[]> reg;
     int lastWeek;
     int lastDay;
@@ -23,6 +24,7 @@ public class Registro implements Serializable {
         reg.add(semana);
         this.lastDay=diaSemana;
         this.lastWeek=numeroSemana;
+        this.dailyCigaretteAverage = 8;  // default
     }
     public void SetDay(int i){
         this.lastDay = i;
@@ -43,5 +45,13 @@ public class Registro implements Serializable {
     }
     public int getNumDias(){
         return this.numDias;
+    }
+    // Para cuando se haga que el usuario meta su media de cigarros fumados
+    public int getDailyCigaretteAverage() {
+        return dailyCigaretteAverage;
+    }
+
+    public void setDailyCigaretteAverage(int dailyCigaretteAverage) {
+        this.dailyCigaretteAverage = dailyCigaretteAverage;
     }
 }

@@ -9,6 +9,16 @@
     android:padding="16dp">
 
 
+    <TextView
+        android:id="@+id/puedes_comprar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:text="Con el dinero ahorrado te puedes comprar..."
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:paddingBottom="20dp"/>
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -19,9 +29,9 @@
         android:focusable="true"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/logo"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:contentDescription="@string/he_fumado" />
+        android:contentDescription="@string/he_fumado"/>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -29,8 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="10dp">
+        android:gravity="top"
+        android:padding="10dp"
+        android:layout_weight="1">
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -56,4 +67,5 @@
             android:textSize="20sp"
              />
     </LinearLayout>
+
 </LinearLayout>
