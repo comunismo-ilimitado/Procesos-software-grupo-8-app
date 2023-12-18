@@ -79,7 +79,7 @@ public class Fragment_s1 extends Fragment {
         // Mostramos el numero de cigarros que llevamos
         //textViewFragment.setText(getString(R.string.cigarros_fumados, semana[r.lastDay]));
         textViewFragment.setText("  Cigarros fumados   \n \n " + semana[r.lastDay]+"\n");
-        cont.setText("  Dias sin fumar   \n \n"+r.numDias + "\n");
+        cont.setText("  Días sin fumar   \n \n"+r.numDias + "\n");
 
         if (newTextPending != null) {
             newTextPending = null; // Resetea el texto pendiente
