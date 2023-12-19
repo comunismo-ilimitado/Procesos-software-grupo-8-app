@@ -90,6 +90,8 @@ public class Fragment_s1 extends Fragment {
             r.setNumDias(0);
             cont.setText("  Dias sin fumar   \n \n"+r.numDias + "\n");
             setReg(r); // Guardar cambios en las preferencias compartidas
+
+            setMessage(view, r);
         });
 
         if(flag){

@@ -30,15 +30,24 @@ import java.util.List;
 public class Fragment_s2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view_general = inflater.inflate(R.layout.fragment_s2, container, false);
-            View view = inflater.inflate(R.layout.grafico_cigarros, (ViewGroup) view_general);
-            Registro r = getReg();
-            setAhorro(view_general,r);
-            setGrafica(view,r);
-            //((ViewGroup)view_general).addView(view);
+        View view_general = inflater.inflate(R.layout.fragment_s2, container, false);
+        View view = inflater.inflate(R.layout.grafico_cigarros, (ViewGroup) view_general);
+        Registro r = getReg();
+        setAhorro(view_general,r);
+        setGrafica(view,r);
+        //((ViewGroup)view_general).addView(view);
 
 
-            return view_general;
+        return view_general;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Actualiza la gráfica cada vez que el fragmento se vuelve visible
+        Registro reg = getReg();
+        setGrafica(getView(), reg);  // Le pasa la view de fragment2.xml, pero funciona igual
+        setAhorro(getView(), reg);
     }
 
     public void setAhorro(View viewgroup, Registro registro){
@@ -56,6 +65,7 @@ public class Fragment_s2 extends Fragment {
     }
 
     public void setGrafica(View view, Registro reg){
+        // Cuando accede desde el onResume, view no es la de graifco_cigarros.xml y aún así encuentra barChart
         BarChart barChart = view.findViewById(R.id.barChart);
 
         // Configurar la descripción (título) del gráfico
