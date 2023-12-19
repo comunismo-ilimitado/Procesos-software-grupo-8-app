@@ -5,15 +5,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.PopupWindow;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -105,31 +102,33 @@ public class Fragment_s1 extends Fragment {
     }
 
     public void setMessage(View viewgroup, Registro registro){
+        TextView title = viewgroup.findViewById(R.id.title);
         TextView text = viewgroup.findViewById(R.id.puedes_comprar);
 
         Double balance = Estimaciones.ahorroTotal(registro);
 
         if (balance >= 0) {
             String strBalance = String.format("%.02f", balance);
-            text.setText("Has ahorrado " + strBalance + "€");
+            title.setText("Has ahorrado " + strBalance + "€");
             if (balance > 5 && balance < 10){
-                text.append("\n\nCon el dinero que te has ahorrado podrías comprarte un menú kebab.");
+                text.setText("Con el dinero que te has ahorrado podrías comprarte un menú kebab.");
             } else if (balance >= 10 && balance < 20) {
-                text.append("\n\nCon el dinero que te has ahorrado podrías ir al cine e invitar a alguien.");
-            } else if (balance >= 20 && balance < 50) {
-                text.append("\n\nCon el dinero que te has ahorrado podrías tener una cena especial.");
+                text.setText("Con el dinero que te has ahorrado podrías ir al cine e invitar a alguien.");
+            } else if (balance >= 20 && balance < 70) {
+                text.setText("Con el dinero que te has ahorrado podrías tener una cena especial.");
             } else if (balance >= 50 && balance < 100) {
-                text.append("\n\nCon el dinero que te has ahorrado podrías asistir a un festival.");
+                text.setText("Con el dinero que te has ahorrado podrías asistir a un festival.");
             } else if (balance >= 100 && balance < 200) {
-                text.append("\n\nCon el dinero que te has ahorrado podrías irte de escapada de fin de semana.");
+                text.setText("Con el dinero que te has ahorrado podrías irte de escapada de fin de semana.");
             } else if (balance >= 200 && balance < 500) {
-                text.append("\n\nCon el dinero que te has ahorrado podrías comprarte una nueva consola.");
+                text.setText("Con el dinero que te has ahorrado podrías comprarte una nueva consola.");
             } else if (balance >= 500) {
-                text.append("\n\n¡Guau! Con el dinero que te has ahorrado podrías organizarte un viaje fuera del país.");
+                text.setText("¡Guau! Con el dinero que te has ahorrado podrías organizarte un viaje fuera del país.");
             }
         } else {
             String strBalance = String.format("%.02f", -balance);
-            text.setText("Has gastado " +  strBalance + "€ más de lo normal.\n\nNo te desmotives, conseguirás que ese número sea positivo.");
+            title.setText("Has gastado " +  strBalance + "€ más de lo normal.\n\nNo te desmotives, conseguirás que ese número sea positivo.");
+            text.setText("");
         }
     }
 

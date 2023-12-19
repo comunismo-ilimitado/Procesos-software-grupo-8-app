@@ -10,15 +10,24 @@
 
 
     <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <TextView
         android:id="@+id/puedes_comprar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="bottom"
+        android:gravity="top"
+        android:layout_weight="0.25"
         android:text="Con el dinero ahorrado te puedes comprar..."
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:paddingBottom="20dp"/>
+        android:textSize="15sp"/>
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -41,7 +50,7 @@
         android:orientation="horizontal"
         android:gravity="top"
         android:padding="10dp"
-        android:layout_weight="1">
+        android:layout_weight="2">
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"

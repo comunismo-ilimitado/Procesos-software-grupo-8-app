@@ -48,10 +48,10 @@ public class Fragment_s2 extends Fragment {
 
         if (balance >= 0) {
             String strBalance = String.format("%.02f", balance);
-            text.setText("Te has ahorrado " + strBalance + "€");
+            text.setText("Esta semana has ahorrado " + strBalance + "€");
         } else {
             String strBalance = String.format("%.02f", -balance);
-            text.setText("Te has gastado " +  strBalance + "€");
+            text.setText("Esta semana has gastado " +  strBalance + "€");
         }
     }
 
@@ -60,8 +60,7 @@ public class Fragment_s2 extends Fragment {
 
         // Configurar la descripción (título) del gráfico
         Description description = new Description();
-        description.setText("Dias/Cigarros");
-        description.setPosition(170f,30f);
+        description.setText("");
         barChart.setDescription(description);
 
         //Quita el eje y de la derecha
@@ -78,7 +77,7 @@ public class Fragment_s2 extends Fragment {
         xAxis.setGranularity(1f);
         xAxis.setDrawGridLines(false);
 
-        //CONFIGURA EJE X
+        //CONFIGURA EJE Y
         YAxis yAxis = barChart.getAxisLeft();
         yAxis.setAxisMinimum(0f);
         yAxis.setAxisMaximum(20f);
@@ -116,7 +115,7 @@ public class Fragment_s2 extends Fragment {
 
 
 
-        BarDataSet dataSet = new BarDataSet(entries1, "Cigarros fumados los ultimos 7 dias");
+        BarDataSet dataSet = new BarDataSet(entries1, "Cigarros fumados");
         dataSet.setColor(Color.BLUE);
         //dataSet.setCircleColor(Color.RED);
         BarData lineData = new BarData(dataSet);
