@@ -109,18 +109,13 @@ public class Fragment_s3 extends Fragment {
         Button btnCancelar = popupView.findViewById(R.id.cerrar);
 
         // Configura un clic para el botón "Aceptar"
-        btnAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Obtiene el texto ingresado por el usuario
-                String textoIngresado = textBox.getText().toString();
-                addConsejo(textoIngresado);
-                // Puedes hacer lo que desees con el texto (guardarlo en una variable, etc.)
-                // ...
-
-                // Cierra el popup
-                alertDialog.dismiss();
-            }
+        btnAceptar.setOnClickListener(view -> {
+            // Obtiene el texto ingresado por el usuario
+            String textoIngresado = textBox.getText().toString();
+            // Guardamos el consejo en la lista local (assets es solo de lectura)
+            advices.add(textoIngresado);
+            // Cierra el popup
+            alertDialog.dismiss();
         });
 
         // Configura un clic para el botón "Cancelar"
@@ -133,9 +128,5 @@ public class Fragment_s3 extends Fragment {
         // Muestra el popup
         alertDialog = builder.create();
         alertDialog.show();
-    }
-    // Método para guardar los consejos desde el archivo de texto en assets
-    public void addConsejo(String consejo){
-
     }
 }
